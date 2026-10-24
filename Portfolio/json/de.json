@@ -1,0 +1,18 @@
+
+{
+"name": "FLÔDÔ UNIVERS",
+"short_name": "FLÔDÔ",
+"description": "Galerie en ligne de l'artiste peintre
+Flôdô — toiles, biographie et contact.",
+"start_url": ".",
+"scope": ".",
+"display": "standalone",
+"orientation": "portrait-primary",
+"background_color": "#14231D",
+"theme_color": "#14231D",
+"lang": "fr",
+"icons": [
+{ "src": "icons/icon.svg", "sizes": "any", "type":
+"image/svg+xml", "purpose": "any maskable" }
+]
+}

@@ -1,0 +1,1487 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-
+width, initial-scale=1, viewport-fit=cover">
+<title>FLÔDÔ UNIVERS</title>
+<meta name="description" content="FLÔDÔ
+UNIVERS — galerie en ligne de l'artiste peintre
+Flôdô. Toiles, biographie et contact.">
+<meta name="theme-color" content="#14231D">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon.svg"
+type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/
+icon.svg">
+<meta name="apple-mobile-web-app-capable"
+content="yes">
+<meta name="mobile-web-app-capable"
+
+<meta name="apple-mobile-web-app-status-bar-
+style" content="black-translucent">
+<meta name="apple-mobile-web-app-title"
+content="FLÔDÔ">
+<style>
+/*
+=======================================
+=====================
+FLÔDÔ UNIVERS — jetons de design
+Un mur de salon (vert profond) qui laisse les
+toiles briller,
+des accents laiton (cadre doré), une typographie
+de catalogue.
+=======================================
+===================== */
+:root{
+--bg: #14231D;
+--bg-elevated: #192A22;
+--surface: #1F3128;
+
+--border: rgba(241,234,217,0.12);
+--border-strong: rgba(241,234,217,0.22);
+--text: #F1EAD9;
+--text-muted: #9FAA9B;
+--brass: #B8924A;
+--brass-strong: #D4AD5F;
+--oxblood: #8A4038;
+--danger: #D0776C;
+--success: #8FAE7E;
+--shadow: 0 18px 40px rgba(6,10,8,0.45);
+--font-serif: 'Iowan Old Style', 'Palatino Linotype',
+Palatino, Georgia, serif;
+--font-sans: -apple-system, BlinkMacSystemFont,
+'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-
+serif;
+}
+,::before,*::after{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+
+margin:0;
+background:
+radial-gradient(900px 480px at 50% -8%,
+rgba(184,146,74,0.07), transparent 60%),
+var(--bg);
+color:var(--text);
+font-family:var(--font-sans);
+-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{ font-family:var(--font-serif); font-
+weight:600; margin:0 0 .5rem; }
+h1{ font-size:1.55rem; }
+h2{ font-size:1.25rem; }
+h3{ font-size:1rem; }
+p{ line-height:1.6; margin:0 0 .6rem; }
+.muted{ color:var(--text-muted); }
+a{ color:inherit; }
+button{ font-family:inherit; cursor:pointer; }
+input,textarea{ font-family:inherit; }
+code{ background:var(--surface); padding:1px
+
+5px; border-radius:4px; font-size:.9em; }
+#app{ display:flex; flex-direction:column; min-
+height:100vh; }
+/* --- Entête --- */
+.topbar{
+position:sticky; top:0; z-index:10;
+display:flex; align-items:center; justify-
+content:space-between; gap:10px;
+padding:16px 20px; padding-top:calc(16px +
+env(safe-area-inset-top));
+border-bottom:1px solid var(--border);
+background:rgba(20,35,29,0.88);
+backdrop-filter:blur(10px);
+}
+.brand{ font-family:var(--font-serif); font-
+size:1.2rem; letter-spacing:.05em; color:var(--
+brass-strong); line-height:1.1; }
+.brand span{ display:block; font-size:.56rem;
+
+letter-spacing:.28em; color:var(--text-muted);
+margin-top:2px; font-family:var(--font-sans); }
+.topbar-right{ display:flex; align-items:center;
+gap:10px; }
+.admin-pill{ font-size:.72rem; color:var(--bg);
+background:var(--brass); padding:5px 11px;
+border-radius:999px; }
+.install-btn{ background:none; border:1px solid
+var(--brass); color:var(--brass-strong); border-
+radius:999px; padding:6px 13px; font-
+size:.76rem; }
+/* --- Contenu --- */
+.view{ flex:1; padding:20px 20px calc(104px +
+env(safe-area-inset-bottom)); max-width:760px;
+margin:0 auto; width:100%; animation:fadein
+.35s ease; }
+@keyframes fadein{ from{ opacity:0;
+transform:translateY(6px); } to{ opacity:1;
+transform:none; } }
+
+justify-content:space-between; gap:12px; margin-
+bottom:14px; }
+/* --- Navigation basse --- */
+.bottomnav{
+position:fixed; left:0; right:0; bottom:0; z-index:20;
+display:flex; justify-content:space-around;
+background:rgba(15,26,21,0.94); backdrop-
+filter:blur(12px);
+border-top:1px solid var(--border);
+padding:9px 6px calc(9px + env(safe-area-inset-
+bottom));
+}
+.bottomnav a{ display:flex; flex-direction:column;
+align-items:center; gap:3px; color:var(--text-
+muted); font-size:.67rem; padding:4px 12px;
+border-radius:10px; }
+.bottomnav a.active{ color:var(--brass-strong); }
+.bottomnav--admin a.active{ color:#E3B98C; }
+@media (min-width:640px){
+
+.bottomnav{ max-width:760px; left:50%;
+transform:translateX(-50%); border-radius:18px
+18px 0 0; }
+}
+/* --- Cartes génériques (formulaires, réglages)
+--- */
+.card{ background:var(--surface); border:1px
+solid var(--border); padding:18px; margin-
+bottom:16px; }
+.card h3{ margin-bottom:4px; }
+/* --- Formulaires --- */
+.form{ display:flex; flex-direction:column;
+gap:13px; }
+.form label{ display:flex; flex-direction:column;
+gap:6px; font-size:.84rem; color:var(--text-
+muted); }
+.form input, .form textarea{
+background:var(--bg-elevated); border:1px solid
+
+var(--border); border-radius:9px;
+padding:11px 12px; color:var(--text); font-
+size:.95rem;
+}
+.form input:focus, .form textarea:focus{
+outline:2px solid var(--brass); outline-offset:1px;
+border-color:var(--brass); }
+textarea{ resize:vertical; min-height:90px; }
+.form-error{ color:var(--danger); font-size:.82rem;
+min-height:1.1em; }
+.form-success{ color:var(--success); font-
+size:.82rem; }
+.hint{ font-size:.78rem; color:var(--text-muted);
+margin:-4px 0 2px; }
+.btn{
+background:var(--brass); color:#1A160E;
+border:none; border-radius:999px;
+padding:12px 22px; font-size:.92rem; font-
+weight:600; letter-spacing:.01em;
+
+display:inline-flex; align-items:center; justify-
+content:center; gap:7px;
+}
+.btn:hover{ background:var(--brass-strong); }
+.btn:disabled{ opacity:.55; }
+.btn--outline{ background:transparent;
+border:1px solid var(--brass); color:var(--brass-
+strong); }
+.btn--outline:hover{
+background:rgba(184,146,74,0.1); }
+.btn--small{ padding:8px 15px; font-size:.8rem;
+align-self:flex-start; }
+.btn--ghost{ background:none; border:none;
+color:var(--text-muted); padding:8px 4px; }
+.tabs{ display:flex; gap:8px; margin-bottom:16px;
+}
+.tab-btn{ flex:1; background:var(--surface);
+border:1px solid var(--border); color:var(--text-
+muted); padding:10px; border-radius:999px; font-
+
+brass); border-color:var(--brass); }
+.search-bar{ margin-bottom:18px; }
+.search-bar input{ width:100%; background:var(--
+surface); border:1px solid var(--border); border-
+radius:999px; padding:11px 16px; color:var(--
+text); font-size:.9rem; }
+/* --- Galerie : les toiles sont encadrées, pas
+mises en "carte SaaS" --- */
+.gallery{ display:grid; grid-template-
+columns:repeat(auto-fill, minmax(148px,1fr));
+gap:18px 16px; }
+.painting-card{ text-align:left; }
+.painting-card__frame{
+width:100%; aspect-ratio:4/5; background-
+size:cover; background-position:center;
+background-color:var(--bg-elevated);
+border:1px solid var(--border-strong);
+outline:1px solid rgba(184,146,74,0.28); outline-
+
+offset:-6px;
+cursor:pointer;
+}
+.painting-card__body{ padding-top:9px; }
+.painting-card__body h3{ font-size:.94rem;
+margin-bottom:2px; }
+.painting-card__dims{ font-size:.76rem;
+color:var(--text-muted); }
+.card-actions{ display:flex; gap:8px; margin-
+top:8px; }
+.icon-btn{ background:var(--surface); border:1px
+solid var(--border); color:var(--text-muted);
+border-radius:8px; width:32px; height:32px;
+display:flex; align-items:center; justify-
+content:center; }
+.icon-btn:hover{ color:var(--brass-strong); border-
+color:var(--brass); }
+/* --- États vides : invitation à agir, pas une
+excuse --- */
+
+.empty-state{ padding:52px 10px; text-align:left;
+max-width:420px; }
+.empty-state h3{ font-size:1.1rem; margin-
+bottom:6px; }
+/* --- Modales (feuille du bas) --- */
+.modal-overlay{ position:fixed; inset:0;
+background:rgba(8,13,10,0.62); display:flex;
+align-items:flex-end; justify-content:center; z-
+index:50; }
+.modal-card{
+background:var(--bg-elevated); border-top:1px
+solid var(--border-strong);
+padding:22px 20px calc(22px + env(safe-area-
+inset-bottom));
+width:100%; max-width:600px; max-height:88vh;
+overflow-y:auto; position:relative;
+box-shadow:var(--shadow);
+animation:sheetup .25s ease;
+}
+
+@keyframes sheetup{ from{
+transform:translateY(16px); opacity:.6; } to{
+transform:none; opacity:1; } }
+.modal-close{ position:absolute; top:14px;
+right:14px; background:none; border:none;
+color:var(--text-muted); padding:6px; }
+.detail-img{ width:100%; border:1px solid var(--
+border-strong); margin-bottom:14px; }
+/* --- Biographie --- */
+.bio-header{ margin-bottom:14px; }
+.bio-photo{ width:112px; height:112px; border-
+radius:50%; object-fit:cover; border:2px solid
+var(--brass); margin-bottom:12px;
+background:var(--bg-elevated); }
+.bio-text p{ white-space:pre-wrap; }
+/* --- Contact --- */
+.contact-list{ display:flex; flex-direction:column;
+gap:9px; }
+
+.contact-item{ display:flex; align-items:center;
+gap:13px; background:var(--surface); border:1px
+solid var(--border); padding:14px 15px; text-
+decoration:none; }
+.contact-item:hover{ border-color:var(--brass); }
+.contact-item span{ font-size:.92rem; }
+/* --- Accès artiste (discret) --- */
+.admin-entry{ margin-top:44px; }
+.admin-entry button{ background:none;
+border:none; color:var(--text-muted); opacity:.55;
+font-size:.76rem; padding:10px 2px; }
+.admin-entry button:hover{ opacity:.9; }
+/* --- Profil (compte privé) --- */
+.profile-photo-wrap{ display:flex; align-
+items:center; gap:14px; margin-bottom:2px; }
+.profile-photo{ width:60px; height:60px; border-
+radius:50%; object-fit:cover; border:1px solid
+var(--border-strong); background:var(--bg-
+
+elevated); }
+@media (prefers-reduced-motion: reduce){
+*{ animation-duration:0.001ms !important; }
+}
+</style>
+</head>
+<body>
+<div id="app">
+<header class="topbar" id="topbar">
+<div class="brand">FLÔDÔ<span>UNIVERS</
+span></div>
+<div class="topbar-right">
+<span class="admin-pill" id="admin-pill"
+hidden>Espace privé</span>
+<button id="install-btn" class="install-btn"
+hidden>Installer</button>
+</div>
+</header>
+
+<main class="view" id="view"></main>
+<nav class="bottomnav" id="nav-public"></nav>
+<nav class="bottomnav bottomnav--admin"
+id="nav-admin" hidden></nav>
+<div id="modal-root"></div>
+</div>
+<script type="module">
+/*
+===============================
+=============================
+FLÔDÔ UNIVERS — connecté à
+Firebase (Firestore + Authentication)
+Mise en route (détails complets dans
+README.md) :
+
+Créez un projet sur https://
+console.firebase.google.com
+Activez Firestore Database (mode production)
+Activez Authentication > fournisseur E-mail/
+Mot de passe,
+puis créez VOTRE utilisateur (onglet Users) :
+c'est l'e-mail
+et le mot de passe qui ouvriront l'espace privé.
+Paramètres du projet > Général > Vos
+applications > (</>)
+Web : copiez l'objet de configuration ci-
+dessous.
+Collez le contenu de firestore.rules dans
+Firestore > Règles.
+=====================================
+======================= */
+const firebaseConfig = {
+2.
+3.
+4.
+5.
+
+projectId: "COLLEZ_VOTRE_projectId_ICI",
+storageBucket:
+"COLLEZ_VOTRE_storageBucket_ICI",
+messagingSenderId:
+"COLLEZ_VOTRE_messagingSenderId_ICI",
+appId: "COLLEZ_VOTRE_appId_ICI"
+};
+const NOT_CONFIGURED =
+firebaseConfig.apiKey.indexOf('COLLEZ_') === 0;
+import { initializeApp } from 'https://
+www.gstatic.com/firebasejs/12.17.1/firebase-
+app.js';
+import {
+getFirestore, collection, doc, getDoc, setDoc,
+addDoc, updateDoc, deleteDoc,
+onSnapshot, query, orderBy
+} from 'https://www.gstatic.com/firebasejs/
+12.17.1/firebase-firestore.js';
+import {
+
+getAuth, onAuthStateChanged,
+signInWithEmailAndPassword, signOut,
+EmailAuthProvider,
+reauthenticateWithCredential, updateEmail,
+updatePassword
+} from 'https://www.gstatic.com/firebasejs/
+12.17.1/firebase-auth.js';
+let app, db, auth;
+if (!NOT_CONFIGURED){
+app = initializeApp(firebaseConfig);
+db = getFirestore(app);
+auth = getAuth(app);
+}
+/*
+=======================================
+=====================
+UTILITAIRES
+=======================================
+
+const BLANK_IMG = 'data:image/
+gif;base64,R0lGODlhAQABAIAAAAAAAP///
+yH5BAEAAAAALAAAAAABAAEAAAIBTAA7';
+function uid(){ return Date.now().toString(36) +
+Math.random().toString(36).slice(2,8); }
+function escapeHtml(str){
+return String(str==null ? '' : str).replace(/[&<>"']/g,
+c => ({
+'&':'&','<':'<','>':'>','"':'"',"'":'''
+}[c]));
+}
+function normalize(str){
+return
+String(str||'').toLowerCase().normalize('NFD').repl
+ace(/[\u0300-\u036f]/g,'');
+}
+
+function isValidEmail(email){ return /^[^\s@]
++@[^\s@]+.[^\s@]+$`/.test(email); }
+function emptyState(title, subtitle){
+return <div class="empty-state"&gt;&lt;h3&gt;$
+{escapeHtml(title)}</h3>
+latex
+{subtitle ? `<p class="muted"&gt;
+{escapeHtml(subtitle)}</p>: ''}&lt;/div>;
+}
+function readAndCompressImage(file, maxDim,
+quality){
+maxDim = maxDim || 1400; quality = quality ||
+0.82;
+return new Promise((resolve, reject) => {
+const reader = new FileReader();
+
+const img = new Image();
+img.onload = () => {
+let w = img.width, h = img.height;
+if (w > maxDim || h > maxDim){
+if (w > h){ h = Math.round(h * (maxDim / w)); w =
+maxDim; }
+else { w = Math.round(w * (maxDim / h)); h =
+maxDim; }
+}
+const canvas =
+document.createElement('canvas');
+canvas.width = w; canvas.height = h;
+canvas.getContext('2d').drawImage(img, 0, 0, w,
+h);
+resolve(canvas.toDataURL('image/jpeg', quality));
+};
+img.onerror = () => reject(new Error('image-load-
+failed'));
+img.src = e.target.result;
+};
+
+reader.readAsDataURL(file);
+});
+}
+// Compresse une image en boucle jusqu'à tenir
+sous maxBytes, pour rester
+// confortablement sous la limite de 1 Mo par
+document Firestore.
+async function compressToLimit(file, maxBytes,
+startDim, startQuality){
+maxBytes = maxBytes || 900000;
+let dim = startDim || 1100;
+let quality = startQuality || 0.78;
+let dataUrl = await readAndCompressImage(file,
+dim, quality);
+let attempts = 0;
+while (dataUrl.length > maxBytes && attempts <
+5){
+quality = Math.max(0.4, quality - 0.15);
+dim = Math.max(450, Math.round(dim * 0.85));
+
+dataUrl = await readAndCompressImage(file,
+dim, quality);
+attempts++;
+}
+return dataUrl;
+}
+/*
+=======================================
+=====================
+ICÔNES (SVG traits fins)
+=======================================
+===================== */
+const ICON_PATHS = {
+home: '<path d="M4 11.5 12 4l8 7.5"/><path
+d="M6 10v9h12v-9"/>',
+info: '<circle cx="12" cy="12" r="8.5"/><line
+x1="12" y1="11" x2="12" y2="16.5"/><circle
+cx="12" cy="7.6" r="0.9" fill="currentColor"
+stroke="none"/>',
+
+phone: '<path d="M6 3h3l1.5 4-2 2a12 12 0 0 0
+6.5 6.5l2-2 4 1.5v3c0 1-1 2-2 2A17 17 0 0 1 4
+5c0-1 1-2 2-2Z"/>',
+user: '<circle cx="12" cy="8" r="3.4"/><path
+d="M5 20c1.4-4 3.9-6 7-6s5.6 2 7 6"/>',
+plus: '<line x1="12" y1="5" x2="12" y2="19"/><line
+x1="5" y1="12" x2="19" y2="12"/>',
+edit: '<path d="M4 20h4l10.2-10.2-4-4L4 16Z"/
+><path d="M13.4 6.6l4 4"/>',
+trash: '<path d="M5 7h14"/><path d="M9
+7V4.5h6V7"/><path d="M7 7l1 12.5h8L17 7"/>',
+close: '<line x1="6" y1="6" x2="18" y2="18"/><line
+x1="6" y1="18" x2="18" y2="6"/>',
+mail: '<rect x="3.5" y="5.5" width="17"
+height="13" rx="1.5"/><path d="M4 6.5l8 6 8-6"/>',
+whatsapp: '<path d="M12 3a8.5 8.5 0 0 0-7.4
+12.7L3 21l5.5-1.5A8.5 8.5 0 1 0 12 3Z"/><path
+d="M8.6 8.9c.2-.5.4-.5.6-.5h.5c.2 0 .3.1.4.3l.6
+1.4c.1.2 0 .4-.1.6l-.4.5c.4.9 1.1 1.6 2
+2l.5-.4c.2-.1.4-.2.6-.1l1.4.6c.2.1.3.2.3.4v.5c0
+
+.3-.1.5-.5.6-2.6.5-5.4-2.3-5.9-4.9-.1-.4 0-.7.1-1Z"/>',
+instagram: '<rect x="4" y="4" width="16"
+height="16" rx="5"/><circle cx="12" cy="12"
+r="3.4"/><circle cx="16.4" cy="7.6" r="0.9"
+fill="currentColor" stroke="none"/>',
+facebook: '<path d="M13.5
+21v-7h2.3l.4-3h-2.7V9c0-.8.3-1.4
+1.5-1.4h1.3V5c-.3 0-1.2-.1-2.1-.1-2.2 0-3.6 1.3-3.6
+3.6V11H8.5v3H11v7Z" fill="currentColor"
+stroke="none"/>',
+logout: '<path d="M9 4H6a2 2 0 0 0-2 2v12a2 2 0
+0 0 2 2h3"/><path d="M15 16l4-4-4-4"/><path
+d="M19 12H9"/>'
+};
+function icon(name, size){
+size = size || 20;
+return <svg width="${size}" height="${size}"
+viewBox="0 0 24 24" fill="none"
+stroke="currentColor" stroke-width="1.6" stroke-
+
+linecap="round" stroke-linejoin="round" aria-
+hidden="true"&gt;${ICON_PATHS[name]||''}</
+svg>`;
+}
+/*
+=======================================
+=====================
+ÉTAT LOCAL (cache pour un rendu synchrone) +
+FIRESTORE
+=======================================
+===================== */
+let paintingsCache = [];
+let bioCache = '';
+let contactCache = { telephones:[], whatsapp:'',
+instagram:'', facebook:'', email:'' };
+let profileCache = { nom:'', photo:'' };
+let isAdminAuthed = false;
+let authReady = false;
+
+function startRealtimeSync(){
+onSnapshot(query(collection(db,'paintings'),
+orderBy('createdAt','desc')), (snap) => {
+paintingsCache = snap.docs.map(d =>
+Object.assign({ id:d.id }, d.data()));
+if (authReady && (location.hash === '#/accueil' ||
+location.hash === '#/admin/accueil')) render();
+}, () => {});
+onSnapshot(doc(db,'settings','bio'), (snap) => {
+bioCache = snap.exists() ? (snap.data().text || '') :
+'';
+if (authReady && (location.hash === '#/
+biographie' || location.hash === '#/admin/
+biographie')) render();
+}, () => {});
+onSnapshot(doc(db,'settings','contact'), (snap) =>
+{
+contactCache = snap.exists() ? snap.data() :
+contactCache;
+if (authReady && (location.hash === '#/contact' ||
+
+}, () => {});
+onSnapshot(doc(db,'settings','profile'), (snap) => {
+profileCache = snap.exists() ? snap.data() :
+profileCache;
+if (authReady && (location.hash === '#/
+biographie' || location.hash === '#/admin/
+compte')) render();
+}, () => {});
+}
+const Store = {
+getPaintings(){ return paintingsCache; },
+async addPainting(data){ await
+addDoc(collection(db,'paintings'),
+Object.assign({ createdAt: Date.now() }, data)); },
+async updatePainting(id, data){ await
+updateDoc(doc(db,'paintings',id), data); },
+async deletePainting(id){ await
+deleteDoc(doc(db,'paintings',id)); },
+
+getBio(){ return bioCache; },
+async setBio(text){ await
+setDoc(doc(db,'settings','bio'), { text }); },
+getContact(){ return contactCache; },
+async setContact(obj){ await
+setDoc(doc(db,'settings','contact'), obj); },
+getAdminProfile(){ return profileCache; },
+async setAdminProfile(obj){ await
+setDoc(doc(db,'settings','profile'), obj); },
+async findVisitorByEmail(email){
+const snap = await getDoc(doc(db,'visitors',
+email.toLowerCase()));
+return snap.exists() ? snap.data() : null;
+},
+async addVisitor(v){ await
+setDoc(doc(db,'visitors', v.email.toLowerCase()),
+v); }
+
+function getVisitorSession(){
+const email =
+localStorage.getItem('flodo_session_visitor');
+if (!email) return null;
+try{
+const data =
+JSON.parse(localStorage.getItem('flodo_session
+_visitor_data'));
+return data || { email, nom:'' };
+} catch(e){ return { email, nom:'' }; }
+}
+function setVisitorSession(visitor){
+localStorage.setItem('flodo_session_visitor',
+visitor.email);
+localStorage.setItem('flodo_session_visitor_data',
+JSON.stringify(visitor));
+}
+function clearVisitorSession(){
+localStorage.removeItem('flodo_session_visitor');
+
+localStorage.removeItem('flodo_session_visitor_
+data');
+}
+function currentAccess(){
+return { isAdmin: isAdminAuthed, visitorEmail:
+localStorage.getItem('flodo_session_visitor') };
+}
+/*
+=======================================
+=====================
+MODALES
+=======================================
+===================== */
+function openModal(bodyHtml){
+const root = document.getElementById('modal-
+root');
+root.innerHTML = <div class="modal-overlay"
+id="modal-overlay"&gt; &lt;div class="modal-
+card"&gt; &lt;button class="modal-close"
+
+id="modal-close" aria-label="Fermer"&gt;$
+{icon('close')}</button>
+${bodyHtml} &lt;/div&gt; &lt;/div>;
+document.getElementById('modal-
+overlay').addEventListener('click', (e) => {
+if (e.target.id === 'modal-overlay') closeModal();
+});
+document.getElementById('modal-
+close').addEventListener('click', closeModal);
+}
+function closeModal(){
+document.getElementById('modal-
+root').innerHTML = ''; }
+function openAdminLoginModal(){
+openModal(&lt;h2&gt;Espace privé&lt;/h2&gt;
+&lt;p class="muted"&gt;Réservé à l'artiste.&lt;/
+p&gt; &lt;form id="form-admin-login"
+class="form"&gt; &lt;label&gt;Adresse e-mail
+&lt;input type="email" name="email" required
+
+autocomplete="username"&gt; &lt;/label&gt;
+&lt;label&gt;Mot de passe &lt;input
+type="password" name="password" required
+autocomplete="current-password"&gt; &lt;/
+label&gt; &lt;button class="btn"
+type="submit"&gt;Accéder à l'espace privé&lt;/
+button&gt; &lt;p class="form-error" id="err-admin-
+login"&gt;&lt;/p&gt; &lt;/form&gt;);
+document.getElementById('form-admin-
+login').addEventListener('submit', async (e) => {
+e.preventDefault();
+const fd = new FormData(e.target);
+const errEl = document.getElementById('err-
+admin-login');
+const btn = e.target.querySelector('button');
+btn.disabled = true;
+try{
+await signInWithEmailAndPassword(auth,
+fd.get('email').trim(), fd.get('password'));
+closeModal();
+
+location.hash = '#/admin/accueil';
+} catch(err){
+errEl.textContent = "E-mail ou mot de passe
+incorrect.";
+btn.disabled = false;
+}
+});
+}
+function openPaintingDetail(id){
+const p = paintingsCache.find(x => x.id === id);
+if (!p) return;
+openModal(&lt;img class="detail-img" src="$
+{p.image}"
+alt="
+{escapeHtml(p.title)}</h2>
+<p class="muted painting-card__dims">
+{p.description ? <h4&gt;Explication&lt;/
+
+h4&gt;&lt;p&gt;${escapeHtml(p.description)}</
+p>: ''}${p.inspiration ? <h4&gt;Inspiration&lt;/
+h4&gt;&lt;p&gt;${escapeHtml(p.inspiration)}</p>:
+''});
+}
+function openPaintingFormModal(id){
+const existing = id ? paintingsCache.find(p =>
+p.id===id) : null;
+openModal(&lt;h2&gt;${existing ? 'Modifier la
+toile' : 'Publier une toile'}</h2>
+<form id="form-painting" class="form">
+<label>Image
+latex
+{existing ? '(laissez vide pour conserver
+l\u2019image actuelle)' : ''} &lt;input
+type="file" name="image" accept="image/
+*"
+
+{existing ? '' : 'required'}>
+</label>
+<label>Titre
+<input type="text" name="title"
+value="
+{existing ? escapeHtml(existing.dimensions) : ''}"
+required>
+</label>
+<label>Explication
+<textarea name="description" rows="3">
+{existing ? escapeHtml(existing.inspiration) : ''}</
+textarea>
+</label>
+<button class="btn" type="submit" id="btn-save-
+painting">${existing ? 'Enregistrer les
+modifications' : 'Publier la toile'}&lt;/button&gt;
+&lt;p class="form-error" id="err-painting"&gt;&lt;/
+p&gt; &lt;/form&gt;);
+
+document.getElementById('form-
+painting').addEventListener('submit', async (e)
+=> {
+e.preventDefault();
+const fd = new FormData(e.target);
+const file = fd.get('image');
+const btn = document.getElementById('btn-save-
+painting');
+const errEl = document.getElementById('err-
+painting');
+btn.disabled = true;
+const originalLabel = btn.textContent;
+try{
+let image = existing ? existing.image : '';
+if (file && file.size > 0){
+btn.textContent = 'Traitement de l\u2019image…';
+image = await compressToLimit(file, 900000,
+1100, 0.78);
+}
+btn.textContent = 'Enregistrement…';
+
+const data = {
+title: fd.get('title').trim(),
+dimensions: fd.get('dimensions').trim(),
+description: fd.get('description').trim(),
+inspiration: fd.get('inspiration').trim(),
+image
+};
+if (existing) await
+Store.updatePainting(existing.id, data);
+else await Store.addPainting(data);
+closeModal();
+} catch(err){
+errEl.textContent = "Une erreur est survenue.
+Vérifiez votre connexion et réessayez.";
+btn.disabled = false;
+btn.textContent = originalLabel;
+}
+});
+}
+
+/*
+=======================================
+=====================
+VUES PUBLIQUES
+=======================================
+===================== */
+function paintingCardHtml(p){
+return &lt;article class="painting-card"&gt; &lt;div
+class="painting-card__frame" data-id="${p.id}"
+style="background-
+image:url('
+{escapeHtml(p.title)} de plus près"></div>
+<div class="painting-card__body">
+<h3>
+{escapeHtml(p.dimensions)}</p>
+</div>
+</article>`;
+
+}
+function renderAccueil(){
+const paintings = Store.getPaintings();
+return &lt;section&gt; &lt;h1&gt;Accueil&lt;/
+h1&gt; &lt;div class="search-bar"&gt; &lt;input
+type="search" id="search-input"
+placeholder="Rechercher une toile par son
+titre"&gt; &lt;/div&gt; &lt;div class="gallery"
+id="gallery"&gt; ${paintings.length ?
+paintings.map(paintingCardHtml).join('') :
+emptyState("Les toiles arrivent bientôt", "Flôdô
+prépare sa galerie. Revenez très vite pour
+découvrir les premières œuvres.")}
+</div>
+</section>`;
+}
+function wireAccueil(){
+document.querySelectorAll('.painting-
+card__frame').forEach(el => {
+
+el.addEventListener('click', () =>
+openPaintingDetail(el.dataset.id));
+el.addEventListener('keydown', (e) => { if
+(e.key==='Enter' || e.key===' '){ e.preventDefault();
+openPaintingDetail(el.dataset.id); } });
+});
+const search =
+document.getElementById('search-input');
+const paintings = Store.getPaintings();
+search.addEventListener('input', () => {
+const q = normalize(search.value);
+document.querySelectorAll('.painting-
+card').forEach(card => {
+const frame = card.querySelector('.painting-
+card__frame');
+const p = paintings.find(x => x.id ===
+frame.dataset.id);
+card.style.display = (p &&
+normalize(p.title).includes(q)) ? '' : 'none';
+
+});
+});
+}
+function renderBiographie(){
+const bio = Store.getBio();
+const profile = Store.getAdminProfile();
+return &lt;section&gt; &lt;h1&gt;Biographie&lt;/
+h1&gt; &lt;div class="bio-header"&gt;$
+{profile.photo ? <img class="bio-photo" src="$
+{profile.photo}" alt="Portrait de l'artiste">: ''}$
+{profile.nom ? <h2&gt;$
+{escapeHtml(profile.nom)}</h2>: ''} &lt;/div&gt;
+&lt;div class="bio-text"&gt;${bio ? <p&gt;$
+{escapeHtml(bio)}</p>:<p
+class="muted">Biographie à venir.</p>} &lt;/
+div&gt; &lt;/section>;
+}
+function renderContact(){
+
+const phones = (c.telephones || []).filter(Boolean);
+const hasAny = phones.length || c.whatsapp ||
+c.instagram || c.facebook || c.email;
+return &lt;section&gt; &lt;h1&gt;Contact&lt;/
+h1&gt;${hasAny ? <div class="contact-list"&gt; $
+{phones.map(t => <a class="contact-item"
+href="tel:${escapeHtml(t.replace(/\s+/g,''))}">
+{escapeHtml(t)}</
+span></a>).join('')} ${c.whatsapp ? <a
+class="contact-item" href="$
+{escapeHtml(c.whatsapp)}" target="_blank"
+rel="noopener">
+latex
+{icon('whatsapp')}
+&lt;span&gt;WhatsApp&lt;/
+span&gt;&lt;/a>` : ''}
+{c.instagram ? <a class="contact-item" href="$
+
+{escapeHtml(c.instagram)}" target="_blank"
+rel="noopener">${icon('instagram')}
+&lt;span&gt;Instagram&lt;/span&gt;&lt;/a> : ''}
+latex
+{c.facebook ? `<a class="contact-item"
+href="
+{escapeHtml(c.facebook)}" target="_blank"
+rel="noopener">
+latex
+{icon('facebook')}
+&lt;span&gt;Facebook&lt;/span&gt;&lt;/
+a>` : ''}
+{c.email ? <a class="contact-item" href="mailto:$
+{escapeHtml(c.email)}">${icon('mail')}
+&lt;span&gt;${escapeHtml(c.email)}</span></
+a>: ''} &lt;/div> : emptyState("Coordonnées à
+
+"")}
+</section>`;
+}
+function renderCompte(){
+const visitor = getVisitorSession();
+return &lt;section&gt; &lt;h1&gt;Compte&lt;/
+h1&gt;${visitor ? &lt;div class="card"&gt;
+&lt;p&gt;Connecté(e) en tant que &lt;strong&gt;$
+{escapeHtml(visitor.nom)}</strong></p>
+<p class="muted">${escapeHtml(visitor.email)}
+&lt;/p&gt; &lt;button class="btn btn--outline btn--
+small" id="btn-logout-visitor"&gt;Se
+déconnecter&lt;/button&gt; &lt;/div> : &lt;div
+class="tabs"&gt; &lt;button class="tab-btn active"
+data-tab="creer" type="button"&gt;Créer un
+compte&lt;/button&gt; &lt;button class="tab-btn"
+data-tab="connexion" type="button"&gt;Se
+connecter&lt;/button&gt; &lt;/div&gt; &lt;form
+id="form-creer" class="form"&gt;
+
+&lt;label&gt;Nom et prénoms &lt;input type="text"
+name="nom" required&gt; &lt;/label&gt;
+&lt;label&gt;Adresse e-mail &lt;input type="email"
+name="email" required&gt; &lt;/label&gt;
+&lt;label&gt;Numéro de téléphone &lt;input
+type="tel" name="telephone" required&gt; &lt;/
+label&gt; &lt;button class="btn"
+type="submit"&gt;Créer mon compte&lt;/
+button&gt; &lt;p class="form-error" id="err-
+creer"&gt;&lt;/p&gt; &lt;/form&gt; &lt;form
+id="form-connexion" class="form" hidden&gt;
+&lt;label&gt;Adresse e-mail &lt;input type="email"
+name="email" required&gt; &lt;/label&gt;
+&lt;button class="btn" type="submit"&gt;Se
+connecter&lt;/button&gt; &lt;p class="form-error"
+id="err-connexion"&gt;&lt;/p&gt; &lt;/form>}
+<div class="admin-entry">
+<button id="btn-admin-entry"
+type="button">Accès artiste</button>
+
+</div>
+</section>`;
+}
+function wireCompte(){
+const tabBtns = document.querySelectorAll('.tab-
+btn');
+tabBtns.forEach(btn =>
+btn.addEventListener('click', () => {
+tabBtns.forEach(b =>
+b.classList.remove('active'));
+btn.classList.add('active');
+document.getElementById('form-creer').hidden =
+btn.dataset.tab !== 'creer';
+document.getElementById('form-
+connexion').hidden = btn.dataset.tab !==
+'connexion';
+}));
+const formCreer =
+document.getElementById('form-creer');
+
+formCreer.addEventListener('submit', async (e)
+=> {
+e.preventDefault();
+const fd = new FormData(formCreer);
+const nom = fd.get('nom').trim();
+const email =
+fd.get('email').trim().toLowerCase();
+const telephone = fd.get('telephone').trim();
+const errEl = document.getElementById('err-
+creer');
+const btn = formCreer.querySelector('button');
+if (!isValidEmail(email)){ errEl.textContent =
+"Adresse e-mail invalide."; return; }
+btn.disabled = true;
+try{
+const existing = await
+Store.findVisitorByEmail(email);
+if (existing){ errEl.textContent = "Un compte
+existe déjà avec cet e-mail. Utilisez « Se
+connecter »."; btn.disabled = false; return; }
+
+Date.now() };
+await Store.addVisitor(visitor);
+setVisitorSession(visitor);
+location.hash = '#/accueil';
+} catch(err){
+errEl.textContent = "Une erreur est survenue.
+Vérifiez votre connexion et réessayez.";
+btn.disabled = false;
+}
+});
+const formConnexion =
+document.getElementById('form-connexion');
+if (formConnexion)
+formConnexion.addEventListener('submit', async
+(e) => {
+e.preventDefault();
+const fd = new FormData(formConnexion);
+const email =
+fd.get('email').trim().toLowerCase();
+
+connexion');
+const btn =
+formConnexion.querySelector('button');
+btn.disabled = true;
+try{
+const visitor = await
+Store.findVisitorByEmail(email);
+if (!visitor){ errEl.textContent = "Aucun compte
+trouvé avec cet e-mail."; btn.disabled = false;
+return; }
+setVisitorSession(visitor);
+location.hash = '#/accueil';
+} catch(err){
+errEl.textContent = "Une erreur est survenue.
+Vérifiez votre connexion et réessayez.";
+btn.disabled = false;
+}
+});
+const btnLogoutVisitor =
+
+if (btnLogoutVisitor)
+btnLogoutVisitor.addEventListener('click', () => {
+clearVisitorSession(); render(); });
+document.getElementById('btn-admin-
+entry').addEventListener('click',
+openAdminLoginModal);
+}
+/*
+=======================================
+=====================
+VUES PRIVÉES (ADMIN)
+=======================================
+===================== */
+function adminPaintingCardHtml(p){
+return &lt;article class="painting-card"&gt; &lt;div
+class="painting-card__frame" style="background-
+image:url('${p.image}')"></div>
+
+<div class="painting-card__body">
+<h3>${escapeHtml(p.title)}&lt;/h3&gt; &lt;p
+class="painting-card__dims"&gt;$
+{escapeHtml(p.dimensions)}</p>
+<div class="card-actions">
+<button class="icon-btn" data-action="edit" data-
+id="${p.id}" aria-label="Modifier"&gt;$
+{icon('edit',17)}</button>
+<button class="icon-btn" data-action="delete"
+data-id="${p.id}" aria-label="Supprimer"&gt;$
+{icon('trash',17)}</button>
+</div>
+</div>
+</article>; } function renderAdminAccueil(){
+const paintings = Store.getPaintings(); return
+<section>
+<div class="page-head">
+<h1>Mes toiles</h1>
+<button class="btn btn--small" id="btn-add-
+painting">${icon('plus',16)} Ajouter une toile&lt;/
+
+button&gt; &lt;/div&gt; &lt;div class="gallery"&gt; $
+{paintings.length ?
+paintings.map(adminPaintingCardHtml).join('') :
+emptyState("Votre galerie est vide", "Ajoutez
+votre première toile pour commencer.")}
+</div>
+</section>`;
+}
+function wireAdminAccueil(){
+document.getElementById('btn-add-
+painting').addEventListener('click', () =>
+openPaintingFormModal());
+document.querySelectorAll('[data-
+action="edit"]').forEach(btn =>
+btn.addEventListener('click', () =>
+openPaintingFormModal(btn.dataset.id)));
+document.querySelectorAll('[data-
+action="delete"]').forEach(btn =>
+btn.addEventListener('click', async () => {
+if (confirm("Supprimer définitivement cette toile
+
+? Cette action est irréversible.")){
+btn.disabled = true;
+try{ await Store.deletePainting(btn.dataset.id); }
+catch(err){ alert("La suppression a échoué.
+Réessayez."); btn.disabled = false; }
+}
+}));
+}
+function renderAdminBiographie(){
+const bio = Store.getBio();
+return &lt;section&gt; &lt;h1&gt;Biographie&lt;/
+h1&gt; &lt;form id="form-bio" class="form"&gt;
+&lt;label&gt;Texte visible par les visiteurs
+&lt;textarea name="bio" rows="10"&gt;$
+{escapeHtml(bio)}</textarea>
+</label>
+<button class="btn" type="submit">Enregistrer la
+biographie</button>
+<p class="form-success" id="bio-success"
+
+hidden>Biographie enregistrée.</p>
+</form>
+</section>`;
+}
+function wireAdminBiographie(){
+document.getElementById('form-
+bio').addEventListener('submit', async (e) => {
+e.preventDefault();
+const btn = e.target.querySelector('button');
+btn.disabled = true;
+try{
+await Store.setBio(new
+FormData(e.target).get('bio').trim());
+const s = document.getElementById('bio-
+success');
+s.hidden = false; setTimeout(() => s.hidden =
+true, 2200);
+} catch(err){ alert("La biographie n'a pas pu être
+enregistrée. Vérifiez votre connexion."); }
+btn.disabled = false;
+
+}
+function renderAdminContact(){
+const c = Store.getContact();
+const phones = (c.telephones &&
+c.telephones.length) ? c.telephones : [''];
+return &lt;section&gt; &lt;h1&gt;Contact&lt;/
+h1&gt; &lt;form id="form-contact"
+class="form"&gt; &lt;div id="phones-wrap"&gt; $
+{phones.map((t,i) => <label&gt;Téléphone$
+{phones.length>1?' '+(i+1):''}<input type="tel"
+class="phone-input"
+value="
+latex
+{escapeHtml(t)}"&gt;&lt;/
+label>`).join('')} &lt;/div&gt; &lt;button
+type="button" class="btn btn--outline
+btn--small" id="btn-add-phone"&gt;+
+Ajouter un numéro&lt;/button&gt;
+&lt;label&gt;Lien WhatsApp &lt;input
+
+type="url" name="whatsapp" value="
+{escapeHtml(c.whatsapp||'')}"
+placeholder="https://wa.me/...">
+</label>
+<label>Lien Instagram
+<input type="url" name="instagram"
+value="
+{escapeHtml(c.facebook||'')}"
+placeholder="https://facebook.com/...">
+</label>
+<label>Adresse e-mail
+<input type="email" name="email" value="$
+{escapeHtml(c.email||'')}"&gt; &lt;/label&gt;
+&lt;button class="btn"
+type="submit"&gt;Enregistrer les
+coordonnées&lt;/button&gt; &lt;p class="form-
+success" id="contact-success"
+hidden&gt;Coordonnées enregistrées.&lt;/p&gt;
+
+&lt;/form&gt; &lt;/section>;
+}
+function wireAdminContact(){
+document.getElementById('btn-add-
+phone').addEventListener('click', () => {
+const wrap = document.getElementById('phones-
+wrap');
+const label = document.createElement('label');
+label.textContent = 'Téléphone ';
+const input = document.createElement('input');
+input.type = 'tel'; input.className = 'phone-input';
+label.appendChild(input);
+wrap.appendChild(label);
+});
+document.getElementById('form-
+contact').addEventListener('submit', async (e) =>
+{
+e.preventDefault();
+const fd = new FormData(e.target);
+const btn = e.target.querySelector('button');
+
+const telephones =
+Array.from(document.querySelectorAll('.phone-
+input')).map(i => i.value.trim()).filter(Boolean);
+try{
+await Store.setContact({
+telephones,
+whatsapp: fd.get('whatsapp').trim(),
+instagram: fd.get('instagram').trim(),
+facebook: fd.get('facebook').trim(),
+email: fd.get('email').trim()
+});
+const s = document.getElementById('contact-
+success');
+s.hidden = false; setTimeout(() => s.hidden =
+true, 2200);
+} catch(err){ alert("Les coordonnées n'ont pas pu
+être enregistrées. Vérifiez votre connexion."); }
+btn.disabled = false;
+});
+}
+
+function renderAdminCompte(){
+const profile = Store.getAdminProfile();
+const currentEmail = (auth && auth.currentUser)
+? auth.currentUser.email : '';
+return `
+<section>
+<h1>Compte</h1>
+<div class="card">
+<h3>Profil public</h3>
+<p class="muted">Le nom et la photo choisis ici
+apparaissent sur la page Biographie.</p>
+<form id="form-profile" class="form">
+<div class="profile-photo-wrap">
+<img id="profile-photo-preview" class="profile-
+photo" src="${profile.photo || BLANK_IMG}"
+alt=""&gt; &lt;label class="btn btn--outline btn--
+small"&gt;Changer la photo &lt;input type="file"
+name="photo" accept="image/*" hidden&gt; &lt;/
+
+label&gt; &lt;/div&gt; &lt;label&gt;Nom et
+prénoms &lt;input type="text" name="nom"
+value="${escapeHtml(profile.nom||'')}">
+</label>
+<button class="btn" type="submit">Enregistrer le
+profil</button>
+<p class="form-success" id="profile-success"
+hidden>Profil enregistré.</p>
+</form>
+</div>
+<div class="card">
+<h3>Accès à l'espace privé</h3>
+<p class="muted">Connecté(e) avec : $
+{escapeHtml(currentEmail)}&lt;/p&gt; &lt;form
+id="form-admin-access" class="form"&gt;
+&lt;label&gt;Mot de passe actuel &lt;input
+type="password" name="currentPassword"
+required autocomplete="current-password"&gt;
+&lt;/label&gt; &lt;label&gt;Nouvelle adresse e-
+
+mail (laisser vide pour ne pas changer) &lt;input
+type="email" name="newEmail" placeholder="$
+{escapeHtml(currentEmail)}">
+</label>
+<label>Nouveau mot de passe (laisser vide pour
+ne pas changer)
+<input type="password" name="newPassword"
+autocomplete="new-password">
+</label>
+<button class="btn" type="submit">Mettre à jour
+l'accès</button>
+<p class="form-error" id="err-admin-access"></p>
+<p class="form-success" id="admin-access-
+success" hidden>Accès mis à jour.</p>
+</form>
+</div>
+<button class="btn btn--ghost" id="btn-logout-
+admin">${icon('logout',17)} Quitter l'espace
+
+privé&lt;/button&gt; &lt;/section>;
+}
+function wireAdminCompte(){
+const photoInput =
+document.querySelector('#form-profile
+input[name="photo"]');
+photoInput.addEventListener('change', async ()
+=> {
+if (photoInput.files[0]){
+const dataUrl = await
+compressToLimit(photoInput.files[0], 500000,
+500, 0.82);
+document.getElementById('profile-photo-
+preview').src = dataUrl;
+photoInput.dataset.processed = dataUrl;
+}
+});
+document.getElementById('form-
+profile').addEventListener('submit', async (e) => {
+
+e.preventDefault();
+const fd = new FormData(e.target);
+const btn = e.target.querySelector('button');
+btn.disabled = true;
+try{
+await Store.setAdminProfile({
+nom: fd.get('nom').trim(),
+photo: photoInput.dataset.processed ||
+profileCache.photo || ''
+});
+const s = document.getElementById('profile-
+success');
+s.hidden = false; setTimeout(() => s.hidden =
+true, 2200);
+} catch(err){ alert("Le profil n'a pas pu être
+enregistré. Vérifiez votre connexion."); }
+btn.disabled = false;
+});
+document.getElementById('form-admin-
+
+access').addEventListener('submit', async (e) => {
+e.preventDefault();
+const fd = new FormData(e.target);
+const errEl = document.getElementById('err-
+admin-access');
+const successEl =
+document.getElementById('admin-access-
+success');
+const btn = e.target.querySelector('button');
+const user = auth.currentUser;
+btn.disabled = true;
+try{
+const cred =
+EmailAuthProvider.credential(user.email,
+fd.get('currentPassword'));
+await reauthenticateWithCredential(user, cred);
+const newEmail = fd.get('newEmail').trim();
+const newPassword =
+fd.get('newPassword').trim();
+if (newEmail) await updateEmail(user, newEmail);
+
+newPassword);
+errEl.textContent = '';
+successEl.hidden = false;
+e.target.reset();
+setTimeout(() => successEl.hidden = true, 2500);
+render();
+} catch(err){
+errEl.textContent = "Mot de passe actuel
+incorrect, ou modification refusée.";
+successEl.hidden = true;
+btn.disabled = false;
+}
+});
+document.getElementById('btn-logout-
+admin').addEventListener('click', async () => {
+await signOut(auth);
+location.hash = '#/compte';
+});
+}
+
+/*
+=======================================
+=====================
+NAVIGATION / ROUTAGE
+=======================================
+===================== */
+function buildNav(){
+document.getElementById('nav-
+public').innerHTML = [
+['#/accueil','home','Accueil'],
+['#/biographie','info','Biographie'],
+['#/contact','phone','Contact'],
+['#/compte','user','Compte']
+].map(([href,ic,label]) => <a href="${href}">$
+{icon(ic)}&lt;span&gt;${label}</span></
+a>`).join('');
+document.getElementById('nav-
+admin').innerHTML = [
+
+['#/admin/accueil','home','Accueil'],
+['#/admin/contact','phone','Contact'],
+['#/admin/biographie','info','Biographie'],
+['#/admin/compte','user','Compte']
+].map(([href,ic,label]) => <a href="${href}">
+{label}</span></a>`).join('');
+}
+function updateActiveNav(hash){
+document.querySelectorAll('.bottomnav
+a').forEach(a => a.classList.toggle('active',
+a.getAttribute('href') === hash));
+}
+function render(){
+if (!authReady){
+document.getElementById('view').innerHTML =
+'<section><p class="muted">Chargement…</p></
+section>';
+
+return;
+}
+const hash = location.hash || '#/compte';
+const { isAdmin, visitorEmail } = currentAccess();
+if (hash.indexOf('#/admin') === 0 && !isAdmin){
+location.hash = '#/compte'; return; }
+if (hash === '#/accueil' && !isAdmin && !
+visitorEmail){ location.hash = '#/compte'; return; }
+document.getElementById('nav-public').hidden =
+isAdmin;
+document.getElementById('nav-admin').hidden =
+!isAdmin;
+document.getElementById('admin-pill').hidden = !
+isAdmin;
+updateActiveNav(hash);
+const view = document.getElementById('view');
+if (hash === '#/accueil'){ view.innerHTML =
+
+renderAccueil(); wireAccueil(); }
+else if (hash === '#/biographie'){
+view.innerHTML = renderBiographie(); }
+else if (hash === '#/contact'){ view.innerHTML =
+renderContact(); }
+else if (hash === '#/compte'){ view.innerHTML =
+renderCompte(); wireCompte(); }
+else if (hash === '#/admin/accueil'){
+view.innerHTML = renderAdminAccueil();
+wireAdminAccueil(); }
+else if (hash === '#/admin/biographie'){
+view.innerHTML = renderAdminBiographie();
+wireAdminBiographie(); }
+else if (hash === '#/admin/contact'){
+view.innerHTML = renderAdminContact();
+wireAdminContact(); }
+else if (hash === '#/admin/compte'){
+view.innerHTML = renderAdminCompte();
+wireAdminCompte(); }
+else { location.hash = '#/compte'; return; }
+
+window.scrollTo(0,0);
+}
+/*
+=======================================
+=====================
+PWA — installation & coquille hors-ligne
+=======================================
+===================== */
+function registerSW(){
+if ('serviceWorker' in navigator){
+window.addEventListener('load', () => {
+navigator.serviceWorker.register('./service-
+worker.js').catch(() => {});
+});
+}
+}
+let deferredInstallPrompt = null;
+function watchInstallPrompt(){
+
+window.addEventListener('beforeinstallprompt',
+(e) => {
+e.preventDefault();
+deferredInstallPrompt = e;
+const btn = document.getElementById('install-
+btn');
+if (btn) btn.hidden = false;
+});
+const btn = document.getElementById('install-
+btn');
+if (btn) btn.addEventListener('click', async () => {
+if (!deferredInstallPrompt) return;
+deferredInstallPrompt.prompt();
+await deferredInstallPrompt.userChoice;
+deferredInstallPrompt = null;
+btn.hidden = true;
+});
+}
+/*
+
+=======================================
+=====================
+INITIALISATION
+=======================================
+===================== */
+registerSW();
+watchInstallPrompt();
+if (NOT_CONFIGURED){
+document.getElementById('view').innerHTML =
+&lt;section&gt; &lt;h1&gt;Configuration
+requise&lt;/h1&gt; &lt;p&gt;Ce site doit être relié
+à votre projet Firebase avant de fonctionner.
+Ouvrez &lt;code&gt;index.html&lt;/code&gt;,
+repérez &lt;code&gt;firebaseConfig&lt;/code&gt;
+tout en haut du script, et remplacez ces valeurs
+par celles de votre projet Firebase. Le guide
+complet est dans &lt;code&gt;README.md&lt;/
+code&gt;.&lt;/p&gt; &lt;/section>;
+
+document.getElementById('nav-public').hidden =
+true;
+} else {
+buildNav();
+document.getElementById('view').innerHTML =
+'<section><p class="muted">Chargement…</p></
+section>';
+startRealtimeSync();
+onAuthStateChanged(auth, (user) => {
+isAdminAuthed = !!user;
+authReady = true;
+render();
+});
+window.addEventListener('hashchange', render);
+}
+</script>
+</body>
+</html>
